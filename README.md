@@ -1,6 +1,6 @@
 # 🚀 dotfiles
 
-Personal configuration files managed by **takagiyuuki**.  
+My personal configuration files.  
 Optimized for **WSL2 (Ubuntu)**, **Neovim**, and **WezTerm**.
 
 ---
