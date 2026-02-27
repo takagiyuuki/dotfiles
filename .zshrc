@@ -122,4 +122,4 @@ eval "$(starship init zsh)"
 
 # Aliases for WSL 
 alias wezterm='wezterm.exe'
-
+alias dotpush='git -C ~/dotfiles add . && git -C ~/dotfiles commit -m "update dotfiles" && git -C ~/dotfiles push'
