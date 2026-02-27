@@ -14,12 +14,14 @@ Optimized for **WSL2 (Ubuntu)**, **Neovim**, and **WezTerm**.
 
 ## 📂 Structure 
 
+```bash
 .
 ├── nvim/           # Neovim (init.lua, plugins via lazy.nvim)
 ├── wezterm/        # WezTerm (Lua configuration & keybinds)
 ├── zsh/            # Zsh configuration (.zshrc)
 ├── scripts/        # Automation scripts (Symbolic links)
 └── .gitignore      # Git ignore patterns
+```
 
 ## 🚀 Installation
 
