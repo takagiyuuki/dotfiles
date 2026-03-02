@@ -1,5 +1,26 @@
-local wezterm = require 'wezterm'
-local config = wezterm.config_builder()
+local wezterm = require 'wezterm' --@type Wezterm
+local config = wezterm.config_builder() --@type Config
+
+-- Windows settings
+if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  -- default shell
+  config.default_prog = {'wsl.exe', '-d', 'Ubuntu' }
+  -- launcher menu
+  config.launch_menu = {
+    {
+      label = 'WSL (Ubuntu)',
+      args = { 'wsl.exe', '-d', 'Ubuntu' },
+    },
+    {
+      label = 'PowerShell',
+      args = { 'pwsh.exe' },
+    },
+    {
+      label = 'Command Prompt',
+      args = { 'cmd.exe' },
+    },
+  }
+end
 
 -- Appearance settings
 config.color_scheme = 'Catppuccin Mocha'
@@ -14,12 +35,6 @@ config.window_frame = {
   font = wezterm.font(main_font),
   font_size = 10.0,
 }
-
--- Default shell configuration (WSL Ubuntu)
--- Set default shell to WSL Ubuntu when running on Windows
-if wezterm.target_triple:find("windows") then
-    config.default_prog = { 'wsl.exe', '-d', 'Ubuntu' }
-end
 
 return config
 
