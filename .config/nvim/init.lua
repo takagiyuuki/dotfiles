@@ -1,9 +1,11 @@
 print("init.lua loaded")
 
+-- lazy.nvim setting
+require("config.lazy")
+
+-- Vim settings
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-
-require("config.lazy")
 
 vim.opt.mouse = ""
 vim.opt.number = true
@@ -25,6 +27,7 @@ vim.opt.undofile = true
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 8
 
+-- command for move to init.lua
 vim.api.nvim_create_user_command(
     'InitLua',
     function()
