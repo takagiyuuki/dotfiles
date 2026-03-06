@@ -1,8 +1,10 @@
 local wezterm = require 'wezterm' --@type wezterm
-local config = wezterm.config_builder() --@type Config
+local config = wezterm.config_builder() --@type config
 
 -- Windows settings
 if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
+  -- default current directory
+  config.default_cwd = "C:\\"
   -- default shell
   config.default_prog = {'wsl.exe', '-d', 'Ubuntu' }
   -- launcher menu
@@ -21,6 +23,8 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     },
   }
 end
+
+-- Linux settings
 
 -- Appearance settings
 config.color_scheme = 'Catppuccin Mocha'
