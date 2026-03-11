@@ -1,2 +1,14 @@
+## Neovim
 **/lazy-lock.json
+
+## Dotenv
+.env
+.env.local
+
+## Gemini CLI
+.gemini_history
+
+## tmp,log
+tmp/*
+log/*
 
