@@ -18,11 +18,14 @@ return {
 
   {
     "neovim/nvim-lspconfig",
+    dependencies = { "williamboman/mason-lspconfig.nvim" },
     config = function()
-      -- Neovim 0.11+ 正式 API
-      vim.lsp.config("lua_ls", {})
-      vim.lsp.config("pyright", {})
-      vim.lsp.config("ts_ls", {})
+      local lspconfig = require("lspconfig")
+      require("mason-lspconfig").setup_handlers({
+        function(server_name)
+          lspconfig[server_name].setup({})
+        end,
+      })
     end,
   },
 }

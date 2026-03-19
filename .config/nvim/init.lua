@@ -1,4 +1,4 @@
-print("init.lua loaded")
+
 
 -- lazy.nvim setting
 require("config.lazy")
