@@ -7,7 +7,7 @@ local config = wezterm.config_builder() --@type config
 -- config.disable_default_key_bindings = true
 
 -- Font configuration
-local main_font = ""
+local main_font = "HackGen Console NF"
 
 -- Windows settings
 if wezterm.target_triple == "x86_64-pc-windows-msvc" then
@@ -32,18 +32,11 @@ if wezterm.target_triple == "x86_64-pc-windows-msvc" then
 	}
 end
 
--- Linux settings
-if wezterm.target_triple == "x86_64-unknown-linux-gnu" then
-	-- font
-	main_font = "HackGen_NF"
-end
-
 -- Basic settings
 config.enable_scroll_bar = true
 config.exit_behavior = "Hold"
 
 -- Font configuration
-local main_font = "HackGen Console NF"
 config.font = wezterm.font(main_font)
 config.font_size = 12.0
 
