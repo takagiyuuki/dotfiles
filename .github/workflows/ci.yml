@@ -40,7 +40,9 @@ jobs:
         uses: cachix/install-nix-action@v25
         with:
           nix_path: nixpkgs=channel:nixos-unstable
+          extra_nix_config: |
+            experimental-features = nix-command flakes
 
       - name: Install Home Manager
         run: |
-          nix-shell -p home-manager --run "home-manager build --flake .#yuki"
+          nix run nixpkgs#home-manager -- build --flake .#yuki
