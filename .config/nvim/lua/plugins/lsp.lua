@@ -7,17 +7,16 @@ return {
 		},
 		config = function()
 			require("mason").setup()
-
-			local lspconfig = require("lspconfig")
-
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "pyright", "ts_ls", "nixd" },
-				handlers = {
-					function(server_name)
-						lspconfig[server_name].setup({})
-					end,
-				},
+				ensure_installed = { "lua_ls", "pyright", "ts_ls" },
 			})
+
+			local servers = { "lua_ls", "pyright", "ts_ls" }
+
+			for _, server in ipairs(servers) do
+				-- nixd pkg is managed by nix home manager
+				vim.lsp.enable(server)
+			end
 		end,
 	},
 }
