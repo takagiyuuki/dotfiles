@@ -56,3 +56,14 @@ chmod +x scripts/symlinks.sh
 * Fonts: HackGen Console NF (Nerd Fonts)
 * Tools: git, zsh, neovim, wezterm
 
+
+このリポジトリはNixで管理しています。
+以下の手順でセットアップしてください。
+
+### install Nix
+
+```bash
+curl -L https://nixos.org/nix/install | sh
+```
+
+
