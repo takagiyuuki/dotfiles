@@ -28,14 +28,27 @@
 	# basic tools
 	git
 	neovim
-	zsh
-	
+	# zsh
+
+  # neovim packages for install/Build 
+  unzip gcc gnumake
+  # for telescope
+  ripgrep fd 
+  # for LSP, Mason
+  nodejs_20
+  (python3.withPackages (ps: with ps; [ 
+      pip 
+      setuptools 
+    ]))
+  luarocks stylua lua51Packages.jsregexp
+
 	# infla tools
 	terraform
 
 	# cli utils
   gh
 	fzf
+  tree
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -66,11 +79,12 @@
     # '';
 	".gitconfig".source = ../../git/.gitconfig;
 	# nevim
-	".config/nvim".source = ../../nvim;
+  ".config/nvim/init.lua".source = ../../nvim/init.lua;
+  ".config/nvim/lua".source = ../../nvim/lua;
 	# wezterm
 	".config/wezterm".source = ../../wezterm;
 	# zsh
-	".zshrc".source = ../../zsh/.zshrc;
+	# ".zshrc".source = ../../zsh/.zshrc;
   };
 
   # Home Manager can also manage your environment variables through
@@ -94,6 +108,19 @@
   };
 
   # Let Home Manager install and manage itself.
+
+  programs.zsh = {
+    enable = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  home.file.".config/starship.toml".source = ../../starship/starship.toml;
 
   programs.home-manager.enable = true;
 }

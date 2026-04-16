@@ -1,32 +1,23 @@
 return {
-  {
-    "williamboman/mason.nvim",
-    config = true,
-  },
+	{
+		"neovim/nvim-lspconfig",
+		dependencies = {
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
+		config = function()
+			require("mason").setup()
 
-  {
-    "williamboman/mason-lspconfig.nvim",
-    dependencies = { "williamboman/mason.nvim" },
-    opts = {
-      ensure_installed = {
-        "lua_ls",
-        "pyright",
-        "ts_ls",
-      },
-    },
-  },
+			local lspconfig = require("lspconfig")
 
-  {
-    "neovim/nvim-lspconfig",
-    dependencies = { "williamboman/mason-lspconfig.nvim" },
-    config = function()
-      local lspconfig = require("lspconfig")
-      require("mason-lspconfig").setup_handlers({
-        function(server_name)
-          lspconfig[server_name].setup({})
-        end,
-      })
-    end,
-  },
+			require("mason-lspconfig").setup({
+				ensure_installed = { "lua_ls", "pyright", "ts_ls" },
+				handlers = {
+					function(server_name)
+						lspconfig[server_name].setup({})
+					end,
+				},
+			})
+		end,
+	},
 }
-

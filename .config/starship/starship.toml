@@ -1,0 +1,22 @@
+add_newline = false
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$terraform\
+$kubernetes\
+$line_break\
+$character"""
+
+[directory]
+style = "bold cyan"
+truncate_to_repo = false 
+
+[terraform]
+format = "via [󱁢 $version]($style) "
+style = "bold 105"
+[kubernetes]
+symbol = "󱄄 "
+format = 'at [$symbol$context( \($namespace\))]($style) '
+style = "bold blue"
