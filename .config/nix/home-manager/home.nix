@@ -34,6 +34,7 @@
 	terraform
 
 	# cli utils
+  gh
 	fzf
 
     # # It is sometimes useful to fine-tune packages, for example, by applying

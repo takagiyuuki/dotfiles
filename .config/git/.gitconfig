@@ -1,4 +1,5 @@
 [user]
 	name = Yuki
 	email = 64290748+takagiyuuki@users.noreply.github.com
-
+[credential "https://github.com"]
+	helper = !gh auth git-credential
