@@ -1,12 +1,12 @@
 -- Vim settings before loading lazy.nvim plugins
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
 
 -- lazy.nvim setting
-require("config.lazy")
+require('config.lazy')
 
 -- Vim settings
-vim.opt.mouse = ""
+vim.opt.mouse = ''
 vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.relativenumber = true
@@ -24,10 +24,10 @@ vim.opt.incsearch = true
 
 vim.opt.undofile = true
 
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = 'yes'
 vim.opt.scrolloff = 8
 
 -- command for move to init.lua
-vim.api.nvim_create_user_command("InitLua", function()
-	vim.cmd.edit(vim.fn.stdpath("config") .. "/init.lua")
+vim.api.nvim_create_user_command('InitLua', function()
+  vim.cmd.edit(vim.fn.stdpath('config') .. '/init.lua')
 end, {})
