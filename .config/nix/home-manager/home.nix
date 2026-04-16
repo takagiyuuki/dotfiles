@@ -41,8 +41,17 @@
       setuptools 
     ]))
   luarocks stylua lua51Packages.jsregexp
+  
+  # Lint / Check
+  statix
+  
+  # Formatter
+  nixfmt-rfc-style
 
-	# infla tools
+  # LSP
+  nixd
+
+  # infla tools
 	terraform
 
 	# cli utils
