@@ -25,10 +25,10 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
+
     # basic tools
     git
     neovim
-    # zsh
 
     # neovim packages for install/Build
     unzip
@@ -134,6 +134,20 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        name = "yuki";
+        email = "64290748+takagiyuuki@users.noreply.github.com";
+      };
+      ui = {
+        default-command = "log";
+        pager = "less -FRX";
+      };
+    };
   };
 
   home.file.".config/starship.toml".source = ../../starship/starship.toml;
