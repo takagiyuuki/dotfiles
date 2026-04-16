@@ -41,6 +41,12 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes
 
+      - name: Setup Cachix
+        uses: cachix/cachix-action@v15
+        with:
+          name: yuki-dotfiles
+          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+
       - name: Build Home Manager
         run: |
           cd .config/nix/home-manager
