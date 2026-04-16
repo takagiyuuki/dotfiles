@@ -3,6 +3,7 @@ add_newline = false
 format = """
 $directory\
 $git_branch\
+${custom.jj}\
 $git_status\
 $terraform\
 $kubernetes\
@@ -16,7 +17,18 @@ truncate_to_repo = false
 [terraform]
 format = "via [󱁢 $version]($style) "
 style = "bold 105"
+
 [kubernetes]
 symbol = "󱄄 "
 format = 'at [$symbol$context( \($namespace\))]($style) '
 style = "bold blue"
+
+[custom.jj]
+description = "Display Jujutsu working copy ID"
+command = "/home/yuki/.nix-profile/bin/jj log -r @ -n 1 --no-graph -T 'change_id.short()'"
+when = "jj root"
+shell = ["sh"]
+symbol = "🌀 "
+style = "bold magenta"
+format = "at [$symbol$output]($style) "
+
