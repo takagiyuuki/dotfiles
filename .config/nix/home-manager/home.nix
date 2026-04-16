@@ -25,39 +25,46 @@
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
-	# basic tools
-	git
-	neovim
-	# zsh
+    # basic tools
+    git
+    neovim
+    # zsh
 
-  # neovim packages for install/Build 
-  unzip gcc gnumake
-  # for telescope
-  ripgrep fd 
-  # for LSP, Mason
-  nodejs_20
-  (python3.withPackages (ps: with ps; [ 
-      pip 
-      setuptools 
-    ]))
-  luarocks stylua lua51Packages.jsregexp
-  
-  # Lint / Check
-  statix
-  
-  # Formatter
-  nixfmt-rfc-style
+    # neovim packages for install/Build
+    unzip
+    gcc
+    gnumake
+    # for telescope
+    ripgrep
+    fd
+    # for LSP, Mason
+    nodejs_20
+    (python3.withPackages (
+      ps: with ps; [
+        pip
+        setuptools
+      ]
+    ))
+    luarocks
+    stylua
+    lua51Packages.jsregexp
 
-  # LSP
-  nixd
+    # Lint / Check
+    statix
 
-  # infla tools
-	terraform
+    # Formatter
+    nixfmt-rfc-style
 
-	# cli utils
-  gh
-	fzf
-  tree
+    # LSP
+    nixd
+
+    # infla tools
+    terraform
+
+    # cli utils
+    gh
+    fzf
+    tree
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
     # # overrides. You can do that directly here, just don't forget the
@@ -86,14 +93,14 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
-	".gitconfig".source = ../../git/.gitconfig;
-	# nevim
-  ".config/nvim/init.lua".source = ../../nvim/init.lua;
-  ".config/nvim/lua".source = ../../nvim/lua;
-	# wezterm
-	".config/wezterm".source = ../../wezterm;
-	# zsh
-	# ".zshrc".source = ../../zsh/.zshrc;
+    ".gitconfig".source = ../../git/.gitconfig;
+    # nevim
+    ".config/nvim/init.lua".source = ../../nvim/init.lua;
+    ".config/nvim/lua".source = ../../nvim/lua;
+    # wezterm
+    ".config/wezterm".source = ../../wezterm;
+    # zsh
+    # ".zshrc".source = ../../zsh/.zshrc;
   };
 
   # Home Manager can also manage your environment variables through

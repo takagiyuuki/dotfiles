@@ -26,7 +26,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-unstable
 
       - name: Check Nix Format
-        run: nix-shell -p nixfmt-rfc-style --run "nixfmt --check ./**/*.nix"
+        run: nix-shell -p nixfmt --run "find . -name '*.nix' | xargs nixfmt --check"
 
   nix-build:
     name: Home Manager Build Check
@@ -44,4 +44,8 @@ jobs:
           nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
           nix-channel --update
           export NIX_PATH=$HOME/.nix-defexpr/channels:$NIX_PATH
-          nix-shell -p home-manager --run "home-manager build"
+          if [ -f "flake.nix" ]; then
+            nix run nixpkgs#home-manager -- build --flake .
+          else
+            nix-shell -p home-manager --run "home-manager build"
+          fi
