@@ -41,11 +41,10 @@ jobs:
 
       - name: Build Home Manager
         run: |
-          nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+          nix-channel --add https://github.nix-community.org/home-manager/archive/master.tar.gz home-manager
           nix-channel --update
+          
           export NIX_PATH=$HOME/.nix-defexpr/channels:$NIX_PATH
-          if [ -f "flake.nix" ]; then
-            nix run nixpkgs#home-manager -- build --flake .
-          else
-            nix-shell -p home-manager --run "home-manager build"
-          fi
+          
+          nix-shell -p home-manager --run "home-manager build --flake .#yuki" || \
+          nix-shell -p home-manager --run "home-manager build --flake ./.config/nix/home-manager#yuki"
