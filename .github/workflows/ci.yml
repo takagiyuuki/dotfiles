@@ -48,6 +48,4 @@ jobs:
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
       - name: Build Home Manager
-        run: |
-          cd .config/nix/home-manager
-          nix build .#homeConfigurations.yuki.activationPackage
+        run: nix build .#homeConfigurations.yuki.activationPackage
