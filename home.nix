@@ -86,6 +86,12 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     history.size = 10000;
+    initContent = ''
+      # Notify Wezterm of the current directory (OSC 7)
+          precmd(){
+            printf "\033]7;file://%s%s\033\\" "$HOSTNAME" "$PWD"
+          }
+    '';
   };
 
   programs.starship = {
