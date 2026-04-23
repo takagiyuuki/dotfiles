@@ -36,23 +36,38 @@
       ]
     ))
 
-    # nvim lua pkg manager
-
     # Lua
     stylua
     luarocks
     lua51Packages.jsregexp
 
     # Nix
-    statix
     nixfmt
     nixd
+
+    # direnv
+    direnv
+    nix-direnv
+
+    # YAML/TOML
+    yamlfmt
+    taplo
+
+    # JS, JSON, CSS
+    biome
+
+    # Markdown
+    prettier
 
     # infla tools
     terraform
     tflint # terraform lint
     awscli2
     ssm-session-manager-plugin # aws
+
+    # claude
+    claude-code
+
   ];
 
   home.file = {
@@ -106,6 +121,11 @@
         pager = "less -FRX";
       };
     };
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
   };
 
   programs.home-manager.enable = true;

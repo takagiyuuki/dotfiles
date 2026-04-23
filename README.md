@@ -5,14 +5,14 @@ Optimized for **WSL2 (Ubuntu)**, **Neovim**, and **WezTerm**.
 
 ---
 
-## 🛠 Features 
+## 🛠 Features
 
-* ⌨️ Editor: Neovim with lazy.nvim (LSP, Telescope, etc.)
-* 💻 Terminal: WezTerm with Lua-based custom keybindings.
-* 🐚 Shell: zsh configured for an efficient CLI workflow.
-* 🔗 Automation: Symbolic link management via symlinks.sh.
+- ⌨️ Editor: Neovim with lazy.nvim (LSP, Telescope, etc.)
+- 💻 Terminal: WezTerm with Lua-based custom keybindings.
+- 🐚 Shell: zsh configured for an efficient CLI workflow.
+- 🔗 Automation: Symbolic link management via symlinks.sh.
 
-## 📂 Structure 
+## 📂 Structure
 
 ```bash
 .
@@ -52,18 +52,14 @@ chmod +x scripts/symlinks.sh
 
 ## 💻 Requirements
 
-* OS: Ubuntu (on WSL2) / Windows
-* Fonts: HackGen Console NF (Nerd Fonts)
-* Tools: git, zsh, neovim, wezterm
+- OS: Ubuntu (on WSL2) / Windows
+- Fonts: HackGen Console NF (Nerd Fonts)
+- Tools: git, zsh, neovim, wezterm
 
-
-このリポジトリはNixで管理しています。
-以下の手順でセットアップしてください。
+このリポジトリはNixで管理しています。以下の手順でセットアップしてください。
 
 ### install Nix
 
 ```bash
 curl -L https://nixos.org/nix/install | sh
 ```
-
-

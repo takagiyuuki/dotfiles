@@ -8,7 +8,10 @@
 ## Gemini CLI
 .gemini_history
 
+# Claude Code 
+.claude/
+CLAUDE.md
+
 ## tmp,log
 tmp/*
 log/*
-
