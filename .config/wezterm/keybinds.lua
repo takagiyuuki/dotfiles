@@ -1,6 +1,5 @@
 local wezterm = require('wezterm')
 local act = wezterm.action
-
 return {
   keys = {
     { key = 'Tab', mods = 'CTRL', action = act.ActivateTabRelative(1) },
@@ -151,6 +150,16 @@ return {
     { key = 'Insert', mods = 'CTRL', action = act.CopyTo('PrimarySelection') },
     { key = 'Copy', mods = 'NONE', action = act.CopyTo('Clipboard') },
     { key = 'Paste', mods = 'NONE', action = act.PasteFrom('Clipboard') },
+
+    -- Custom settings
+    { key = '-', mods = 'LEADER', action = act.SplitVertical({ domain = 'CurrentPaneDomain' }) },
+    { key = '|', mods = 'LEADER', action = act.SplitHorizontal({ domain = 'CurrentPaneDomain' }) },
+    { key = 'h', mods = 'LEADER', action = act.ActivatePaneDirection('Left') },
+    { key = 'l', mods = 'LEADER', action = act.ActivatePaneDirection('Right') },
+    { key = 'j', mods = 'LEADER', action = act.ActivatePaneDirection('Down') },
+    { key = 'k', mods = 'LEADER', action = act.ActivatePaneDirection('Up') },
+    { key = 'x', mods = 'LEADER', action = act.CloseCurrentPane({ confirm = true }) },
+    { key = '[', mods = 'LEADER', action = act.ActivateCopyMode },
   },
 
   key_tables = {
