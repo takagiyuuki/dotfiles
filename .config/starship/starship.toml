@@ -12,7 +12,7 @@ $character"""
 
 [directory]
 style = "bold cyan"
-truncate_to_repo = false 
+truncate_to_repo = false
 
 [terraform]
 format = "via [󱁢 $version]($style) "
@@ -24,11 +24,7 @@ format = 'at [$symbol$context( \($namespace\))]($style) '
 style = "bold blue"
 
 [custom.jj]
-description = "Display Jujutsu working copy ID"
-command = "/home/yuki/.nix-profile/bin/jj log -r @ -n 1 --no-graph -T 'change_id.short()'"
-when = "jj root"
-shell = ["sh"]
-symbol = "🌀 "
-style = "bold magenta"
-format = "at [$symbol$output]($style) "
-
+description = "Display Jujutsu working copy status"
+when = "jj-starship detect"
+shell = ["jj-starship"]
+format = "$output "
