@@ -1,65 +1,100 @@
-# 🚀 dotfiles
+# Dotfiles
 
-My personal configuration files.  
-Optimized for **WSL2 (Ubuntu)**, **Neovim**, and **WezTerm**.
+My dotfiles for a reproducible and idempotent development environment across
+platforms.
 
----
+## Stack
 
-## 🛠 Features
+| Category        | Tool                               |
+| --------------- | ---------------------------------- |
+| Shell           | zsh                                |
+| Terminal        | WezTerm                            |
+| Editor          | Neovim (lazy.nvim)                 |
+| Package Manager | Nix + Home Manager                 |
+| VCS             | Jujutsu (jj)                       |
+| Formatter       | biome / prettier / nixfmt / stylua |
 
-- ⌨️ Editor: Neovim with lazy.nvim (LSP, Telescope, etc.)
-- 💻 Terminal: WezTerm with Lua-based custom keybindings.
-- 🐚 Shell: zsh configured for an efficient CLI workflow.
-- 🔗 Automation: Symbolic link management via symlinks.sh.
+## Setup
 
-## 📂 Structure
-
-```bash
-.
-├── nvim/           # Neovim (init.lua, plugins via lazy.nvim)
-├── wezterm/        # WezTerm (Lua configuration & keybinds)
-├── zsh/            # Zsh configuration (.zshrc)
-├── scripts/        # Automation scripts (Symbolic links)
-└── .gitignore      # Git ignore patterns
-```
-
-## 🚀 Installation
-
-### 1. Clone the repository
-
-```bash
-git clone git@github.com:takagiyuuki/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-```
-
-### 2. Create symbolic links
-
-Run the provided script to link configuration files to your home directory.
-
-```bash
-chmod +x scripts/symlinks.sh
-./scripts/symlinks.sh
-
-```
-
-## 🏗 Roadmap
-
-- [ ] Shell: 🐚 Integration of Zsh frameworks (Oh My Zsh / Prezto)
-- [ ] Windows: 🪟 PowerShell scripts for auto-linking on Windows
-- [ ] Appearance: 🎨 Unifying color schemes (Catppuccin/Nightfox)
-- [ ] LSP: 🏗️ Enhancing LSP for Terraform, Ansible, and Python
-- [ ] Container: 🐳 DevContainer configurations for consistent environments
-
-## 💻 Requirements
-
-- OS: Ubuntu (on WSL2) / Windows
-- Fonts: HackGen Console NF (Nerd Fonts)
-- Tools: git, zsh, neovim, wezterm
-
-このリポジトリはNixで管理しています。以下の手順でセットアップしてください。
-
-### install Nix
+1. Install Nix
 
 ```bash
 curl -L https://nixos.org/nix/install | sh
+```
+
+2. Enable flakes
+
+```bash
+mkdir ~/.config/nix
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+```
+
+3. Bootstrap
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/takagiyuuki/dotfiles/refs/heads/main/bin/setup.sh | bash
+```
+
+4. Apply
+
+```bash
+home-manager switch --flake ~/dotfiles#yuki
+```
+
+---
+
+# Dotfiles
+
+## 概要
+
+開発環境の再現性・冪等性を目的とした個人dotfiles。
+
+## セットアップ
+
+1. Nix をインストール
+
+```bash
+curl -L https://nixos.org/nix/install | sh
+```
+
+2. flakes を有効化
+
+```bash
+mkdir ~/.config/nix
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+```
+
+3. リポジトリをクローンする
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/takagiyuuki/dotfiles/refs/heads/main/bin/setup.sh | bash
+```
+
+4. 設定を反映させる
+
+```bash
+home-manager switch --flake ~/dotfiles#yuki
+```
+
+### Appendix
+
+以下のステータスは変更して使用してください。
+
+.home.nix
+
+```nix
+home.username = "yuki";
+home.homeDirectory = "/home/yuki";
+programs.git.settings.user.name
+programs.git.settings.user.email
+programs.jujutsu.settings.user.name
+programs.jujutsu.settings.user.email
+
+```
+
+Windows環境でWeztermを使用している場合、以下のコマンドでシンボリックリンクを作成してください。
+
+```powershell
+New-Item -ItemType SymbolicLink -Path "$HOME\.config\wezterm" -Target "\\wsl.localhost\Ubuntu\home\username\dotfiles\.config\wezterm"
+
 ```
