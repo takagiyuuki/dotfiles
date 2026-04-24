@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  jj-starship-pkg,
+  ...
+}:
 
 {
   home.username = "yuki";
@@ -67,6 +72,9 @@
 
     # claude
     claude-code
+
+    # starship modules
+    jj-starship-pkg
 
   ];
 
