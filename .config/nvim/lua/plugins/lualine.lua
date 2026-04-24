@@ -8,6 +8,19 @@ return {
         theme = 'auto',
         icons_enabled = true,
       },
+      sections = {
+        lualine_c = {
+          { 'filename' },
+          {
+            function()
+              return require('nvim-navic').get_location()
+            end,
+            cond = function()
+              return require('nvim-navic').is_available()
+            end,
+          },
+        },
+      },
     })
   end,
 }
