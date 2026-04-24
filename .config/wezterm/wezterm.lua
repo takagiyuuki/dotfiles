@@ -43,7 +43,8 @@ config.font = wezterm.font(main_font)
 config.font_size = 12.0
 
 -- Appearance settings
-config.color_scheme = 'catppuccin-mocha'
+-- config.color_scheme = 'catppuccin-mocha'
+config.color_scheme = 'Rosé Pine (base16)'
 config.window_background_opacity = 1.0
 config.window_frame = {
   font = wezterm.font(main_font),
