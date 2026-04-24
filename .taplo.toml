@@ -1,0 +1,7 @@
+exclude = ["flake.lock"]
+
+[formatting]
+align_entries = false
+array_trailing_comma = true
+array_auto_expand = true
+indent_string = "  "

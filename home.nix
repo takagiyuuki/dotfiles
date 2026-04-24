@@ -19,13 +19,20 @@
     # basic tools
     git
     neovim
+    jjui
+    gcc
+    gnumake
+    jq
+
+    # cli tools
+    bat
+    zoxide
+    delta
+    ripgrep
     gh
     fzf
     tree
     unzip
-    gcc
-    gnumake
-    ripgrep
     fd
 
     # Node.js
@@ -64,6 +71,9 @@
     # Markdown
     prettier
 
+    # shellscript
+    shfmt
+
     # infla tools
     terraform
     tflint # terraform lint
@@ -86,7 +96,7 @@
   };
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   programs.zsh = {
@@ -110,16 +120,9 @@
   programs.git = {
     enable = true;
     settings = {
-      user = {
-        name = "yuki";
-        email = "64290748+takagiyuuki@users.noreply.github.com";
-      };
       "credential \"https://github.com\"" = {
         helper = "!${pkgs.gh}/bin/gh auth git-credential";
       };
-      init.defaultBranch = "main";
-      pull.rebase = true;
-      core.editor = "nvim";
     };
   };
 

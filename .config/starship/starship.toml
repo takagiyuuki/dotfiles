@@ -1,18 +1,29 @@
-add_newline = false
+"$schema" = 'https://starship.rs/config-schema.json'
+add_newline = true
 
 format = """
 $directory\
-$git_branch\
 ${custom.jj}\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
 $git_status\
+$fill\
 $terraform\
 $kubernetes\
+$aws\
+$azue\
 $line_break\
-$character"""
+$character
+"""
 
 [directory]
 style = "bold cyan"
 truncate_to_repo = false
+
+[fill]
+symbol = " "
 
 [terraform]
 format = "via [󱁢 $version]($style) "

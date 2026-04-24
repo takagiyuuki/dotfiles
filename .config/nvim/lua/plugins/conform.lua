@@ -13,6 +13,7 @@ return {
       markdown = { 'prettier' },
       yaml = { 'yamlfmt' },
       toml = { 'taplo' },
+      sh = { 'shfmt' },
     },
     format_on_save = {
       timeout_ms = 500,
