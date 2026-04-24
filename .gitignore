@@ -5,9 +5,6 @@
 .env
 .env.local
 
-## Gemini CLI
-.gemini_history
-
 # Claude Code 
 .claude/
 CLAUDE.md
