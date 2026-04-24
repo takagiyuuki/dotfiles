@@ -2,9 +2,7 @@ add_newline = false
 
 format = """
 $directory\
-$git_branch\
 ${custom.jj}\
-$git_status\
 $terraform\
 $kubernetes\
 $line_break\
