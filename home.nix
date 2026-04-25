@@ -27,6 +27,7 @@
     gnumake
     ripgrep
     fd
+    jq
 
     # Node.js
     nodejs_20
@@ -63,6 +64,9 @@
 
     # Markdown
     prettier
+
+    # shellscript
+    shfmt
 
     # infla tools
     terraform
