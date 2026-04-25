@@ -86,7 +86,7 @@
   };
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 
   programs.zsh = {
@@ -110,16 +110,9 @@
   programs.git = {
     enable = true;
     settings = {
-      user = {
-        name = "yuki";
-        email = "64290748+takagiyuuki@users.noreply.github.com";
-      };
       "credential \"https://github.com\"" = {
         helper = "!${pkgs.gh}/bin/gh auth git-credential";
       };
-      init.defaultBranch = "main";
-      pull.rebase = true;
-      core.editor = "nvim";
     };
   };
 
