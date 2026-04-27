@@ -19,13 +19,20 @@
     # basic tools
     git
     neovim
+    jjui
+    gcc
+    gnumake
+    jq
+
+    # cli tools
+    bat
+    zoxide
+    delta
+    ripgrep
     gh
     fzf
     tree
     unzip
-    gcc
-    gnumake
-    ripgrep
     fd
     jq
 
