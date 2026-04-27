@@ -34,6 +34,7 @@
     tree
     unzip
     fd
+    jq
 
     # Node.js
     nodejs_20
