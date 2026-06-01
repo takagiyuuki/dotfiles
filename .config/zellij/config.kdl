@@ -1,0 +1,7 @@
+/// Zelllij configuration
+/// - default_mode  : locked
+default_shell "zsh"
+default_layout "default"
+theme "flexoki-light"
+default_mode "locked"
+

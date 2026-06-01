@@ -1,33 +1,44 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    dependencies = {
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-    },
     config = function()
-      require('mason').setup()
-      require('mason-lspconfig').setup({
-        ensure_installed = {
-          'lua_ls',
-          'pyright',
-          'ts_ls',
-          'jsonls',
-          'yamlls',
-          'taplo',
-        },
-      })
-      require('mason-tool-installer').setup({
-        ensure_installed = { 'biome', 'prettier' }, -- formatter
-      })
-
-      local servers = { 'lua_ls', 'pyright', 'ts_ls', 'jsonls', 'yamlls', 'taplo' }
+      local servers = {
+        'lua_ls',
+        'pyright',
+        'ts_ls',
+        'jsonls',
+        'yamlls',
+        'taplo',
+        'nixd',
+        'bashls',
+        'terraformls',
+        'rust_analyzer',
+        'astro',
+        'tailwindcss',
+        'cssls',
+      }
 
       for _, server in ipairs(servers) do
-        -- nixd pkg is managed by nix home manager
         vim.lsp.enable(server)
       end
+
+      -- cssls custom rule for Tailswind v4 directives.
+      vim.lsp.config('cssls', {
+        settings = {
+          css = { lint = { unknownAtRules = 'ignore' } },
+          scss = { lint = { unknownAtRules = 'ignore' } },
+          less = { lint = { unknownAtRules = 'ignore' } },
+        },
+      })
+
+      -- Disable astro LSP formatting (it requires prettier + prettier-plugin-astro,
+      -- which we don't install). Biome handles .astro formatting via conform.nvim.
+      vim.lsp.config('astro', {
+        on_attach = function(client, _bufnr)
+          client.server_capabilities.documentFormattingProvider = false
+          client.server_capabilities.documentRangeFormattingProvider = false
+        end,
+      })
     end,
   },
 }

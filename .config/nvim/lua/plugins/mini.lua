@@ -6,6 +6,7 @@ return {
       require('mini.icons').setup({
         mock_nvim_web_devicons = true,
       })
+      require('mini.comment').setup()
     end,
   },
 }

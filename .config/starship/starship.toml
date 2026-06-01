@@ -11,9 +11,11 @@ $git_metrics\
 $git_status\
 $fill\
 $terraform\
+$pulumi\
 $kubernetes\
 $aws\
-$azue\
+$azure\
+$gcloud\
 $line_break\
 $character
 """
