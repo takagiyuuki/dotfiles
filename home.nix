@@ -108,6 +108,9 @@
       ".config/starship.toml".source = ./.config/starship/starship.toml;
       ".config/zellij/".source = ./.config/zellij;
       ".config/git/ignore".source = ./.config/git/ignore;
+      # Global config
+      ".tflint.hcl".source = ./.tflint.hcl;
+      ".terraformrc".source = ./.terraformrc;
     };
     sessionPath = [
       "{$config.home.homeDirectory}/.npm-global"
@@ -121,6 +124,12 @@
       "la" = "eza --icons -la --git";
       "tree" = "eza --icons -la --tree --level=2";
       "cat" = "bat";
+      "vim" = "nvim";
+    };
+    activation = {
+      terraformPluginCache = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+        run mkdir -p "$HOME/.terraform.d/plugin-cache"
+      '';
     };
   };
   programs = {
