@@ -83,6 +83,7 @@
       prettier
       markdownlint-cli
       marksman
+      defuddle # html-to-markdown for Obsidian clipping
       # shellscript
       shfmt
       bash-language-server
