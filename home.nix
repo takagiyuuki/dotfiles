@@ -82,6 +82,7 @@
       # Markdown
       prettier
       markdownlint-cli
+      marksman
       # shellscript
       shfmt
       bash-language-server
@@ -113,7 +114,7 @@
       ".terraformrc".source = ./.terraformrc;
     };
     sessionPath = [
-      "{$config.home.homeDirectory}/.npm-global"
+      "${config.home.homeDirectory}/.npm-global"
     ];
     sessionVariables = {
       EDITOR = "nvim";
