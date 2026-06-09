@@ -16,6 +16,7 @@ return {
         'astro',
         'tailwindcss',
         'cssls',
+        'marksman',
       }
 
       for _, server in ipairs(servers) do

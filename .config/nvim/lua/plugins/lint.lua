@@ -10,6 +10,7 @@ return {
       typescript = { 'biomejs' },
       css = { 'biomejs' },
       terraform = { 'tflint' },
+      markdown = { 'markdownlint' },
     }
     vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufReadPost' }, {
       callback = function()
