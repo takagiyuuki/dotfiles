@@ -48,6 +48,7 @@
       astro-language-server
       # YAML/TOML/KDL
       yamlfmt
+      yamllint
       taplo
       yaml-language-server
       kdlfmt
@@ -86,7 +87,10 @@
       defuddle # html-to-markdown for Obsidian clipping
       # shellscript
       shfmt
+      shellcheck
       bash-language-server
+      # GitHub Actions
+      actionlint
       # Docker(daemon/CLI is managed by apt; nix provides auxiliary tools only)
       dive
       hadolint
