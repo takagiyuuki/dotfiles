@@ -1,7 +1,10 @@
 /// Zelllij configuration
-/// - default_mode  : locked
 default_shell "zsh"
 default_layout "default"
 theme "flexoki-light"
 default_mode "locked"
+// Drop pane borders/title rows to reclaim space
+pane_frames false
+// ASCII-only UI for higher info density
+simplified_ui true
 

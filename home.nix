@@ -2,6 +2,8 @@
   config,
   pkgs,
   jj-starship-pkg,
+  herdr-pkg,
+  user,
   ...
 }:
 {
@@ -13,8 +15,8 @@
       "claude-code"
     ];
   home = {
-    username = "yuki";
-    homeDirectory = "/home/yuki";
+    username = user.username;
+    homeDirectory = "/home/${user.username}";
     stateVersion = "25.11"; # Please read the comment before changing.
     packages = with pkgs; [
       # Compiler
@@ -28,7 +30,8 @@
       gh
       jjui
       # Terminal Multiplexer
-      zellij
+      zellij # kept as fallback while trialing herdr
+      herdr-pkg
       # cli tools
       eza
       ripgrep
@@ -113,6 +116,7 @@
       ".config/wezterm".source = ./.config/wezterm;
       ".config/starship.toml".source = ./.config/starship/starship.toml;
       ".config/zellij/".source = ./.config/zellij;
+      ".config/herdr/config.toml".source = ./.config/herdr/config.toml;
       ".config/git/ignore".source = ./.config/git/ignore;
       # Global config
       ".tflint.hcl".source = ./.tflint.hcl;
@@ -143,8 +147,8 @@
       enable = true;
       settings = {
         user = {
-          name = "yuki";
-          email = "64290748+takagiyuuki@users.noreply.github.com";
+          name = user.author.name;
+          email = user.author.email;
         };
         core.editor = "nvim";
         "credential \"https://github.com\"" = {
@@ -156,8 +160,8 @@
       enable = true;
       settings = {
         user = {
-          name = "yuki";
-          email = "64290748+takagiyuuki@users.noreply.github.com";
+          name = user.author.name;
+          email = user.author.email;
         };
         ui = {
           editor = "nvim";
@@ -184,6 +188,19 @@
             exec zsh -l
           fi
           return $exit_code
+        }
+
+        # Launch zellij in an interactively chosen directory.
+        # Layout panes inherit this cwd, so nvim/claude start there.
+        zj() {
+          [[ -n "$ZELLIJ" ]] && { echo "already inside zellij" >&2; return 1; }
+          local dir="$1"
+          if [[ -z "$dir" ]]; then
+            # Search roots: dotfiles itself + project dirs under ~/dev. Adjust to taste.
+            dir=$( { echo "$HOME/dotfiles"; fd --type d --max-depth 2 . "$HOME/dev"; } | fzf ) || return
+          fi
+          cd "$dir" || return
+          zellij
         }
       '';
     };
