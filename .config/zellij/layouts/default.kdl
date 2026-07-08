@@ -1,13 +1,17 @@
+// Single compact-bar (bottom) instead of tab-bar + status-bar: 2 rows -> 1
 layout {
-    pane size=1 borderless=true {
-        plugin location="tab-bar"
-    }
     pane split_direction="vertical" {
-        pane
-        pane
+        pane size="50%" command="claude"
+        pane split_direction="horizontal" {
+            pane command="nvim"
+            pane size=3
+        }
     }
     pane size=1 borderless=true {
-        plugin location="status-bar"
+        plugin location="compact-bar" {
+            // tooltip key expands the keybind hints only when pressed
+            tooltip "F1"
+        }
     }
 }
 

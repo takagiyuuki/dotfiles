@@ -1,0 +1,11 @@
+# Onboarding is done; keep settings fixed.
+onboarding = false
+
+[theme]
+name = "terminal"
+
+[ui.toast]
+delivery = "herdr"
+
+[session]
+resume_agent_on_restore = true
