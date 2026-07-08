@@ -3,6 +3,7 @@
   pkgs,
   jj-starship-pkg,
   herdr-pkg,
+  user,
   ...
 }:
 {
@@ -14,8 +15,8 @@
       "claude-code"
     ];
   home = {
-    username = "yuki";
-    homeDirectory = "/home/yuki";
+    username = user.username;
+    homeDirectory = "/home/${user.username}";
     stateVersion = "25.11"; # Please read the comment before changing.
     packages = with pkgs; [
       # Compiler
@@ -146,8 +147,8 @@
       enable = true;
       settings = {
         user = {
-          name = "yuki";
-          email = "64290748+takagiyuuki@users.noreply.github.com";
+          name = user.author.name;
+          email = user.author.email;
         };
         core.editor = "nvim";
         "credential \"https://github.com\"" = {
@@ -159,8 +160,8 @@
       enable = true;
       settings = {
         user = {
-          name = "yuki";
-          email = "64290748+takagiyuuki@users.noreply.github.com";
+          name = user.author.name;
+          email = user.author.email;
         };
         ui = {
           editor = "nvim";

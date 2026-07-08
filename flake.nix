@@ -27,9 +27,16 @@
       pkgs = nixpkgs.legacyPackages.${system};
       jj-starship-pkg = jj-starship.packages.${system}.default;
       herdr-pkg = herdr.packages.${system}.default;
+      user = {
+        username = "yuki"; # home dir, home-manager flake target
+        author = {
+          name = "yuki"; # git/jj commit author
+          email = "64290748+takagiyuuki@users.noreply.github.com";
+        };
+      };
     in
     {
-      homeConfigurations."yuki" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.${user.username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         # Specify your home configuration modules here, for example,
@@ -38,7 +45,7 @@
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-        extraSpecialArgs = { inherit jj-starship-pkg herdr-pkg; };
+        extraSpecialArgs = { inherit jj-starship-pkg herdr-pkg user; };
       };
     };
 }

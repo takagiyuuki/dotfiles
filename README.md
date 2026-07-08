@@ -42,15 +42,18 @@ home # custom home-manager switch command.
 
 ### Appendix
 
-Customize the following fields in `home.nix` for your own environment.
+Customize the `user` attribute set in `flake.nix` for your own environment.
+`home.homeDirectory` is derived from `username`, and the git/jujutsu commit
+author name and email are derived from `author`.
 
 ```nix
-home.username
-home.homeDirectory
-programs.git.settings.user.name
-programs.git.settings.user.email
-programs.jujutsu.settings.user.name
-programs.jujutsu.settings.user.email
+user = {
+  username = "yuki"; # login name → home dir, home-manager flake target
+  author = {
+    name = "yuki"; # git/jj commit author
+    email = "your-email@example.com";
+  };
+};
 ```
 
 #### Windows + WezTerm
