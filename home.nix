@@ -154,6 +154,11 @@
           name = user.author.name;
           email = user.author.email;
         };
+        init.defaultBranch = "main";
+        push = {
+          autoSetupRemote = true;
+          followTags = true;
+        };
         core.editor = "nvim";
         "credential \"https://github.com\"" = {
           helper = "!${pkgs.gh}/bin/gh auth git-credential";
