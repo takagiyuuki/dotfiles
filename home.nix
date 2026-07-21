@@ -40,6 +40,10 @@
       unzip
       fd
       jq
+      # Git hook manager
+      lefthook
+      # secret scanner
+      gitleaks
       # Node.js
       nodejs_24
       pnpm
