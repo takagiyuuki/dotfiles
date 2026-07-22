@@ -198,19 +198,6 @@
           fi
           return $exit_code
         }
-
-        # Launch zellij in an interactively chosen directory.
-        # Layout panes inherit this cwd, so nvim/claude start there.
-        zj() {
-          [[ -n "$ZELLIJ" ]] && { echo "already inside zellij" >&2; return 1; }
-          local dir="$1"
-          if [[ -z "$dir" ]]; then
-            # Search roots: dotfiles itself + project dirs under ~/dev. Adjust to taste.
-            dir=$( { echo "$HOME/dotfiles"; fd --type d --max-depth 2 . "$HOME/dev"; } | fzf ) || return
-          fi
-          cd "$dir" || return
-          zellij
-        }
       '';
     };
     bat = {
