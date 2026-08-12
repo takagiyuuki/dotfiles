@@ -16,6 +16,8 @@ return {
         'astro',
         'tailwindcss',
         'cssls',
+        'html',
+        'emmet_language_server',
         'marksman',
       }
 
