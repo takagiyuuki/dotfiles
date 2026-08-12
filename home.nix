@@ -53,6 +53,7 @@
       typescript-language-server
       tailwindcss-language-server
       astro-language-server
+      emmet-language-server
       # YAML/TOML/KDL
       yamlfmt
       yamllint
