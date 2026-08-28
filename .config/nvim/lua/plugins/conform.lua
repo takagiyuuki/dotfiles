@@ -13,6 +13,7 @@ return {
       lua = { 'stylua' },
       nix = { 'nixfmt' },
       json = { 'biome' },
+      jsonc = { 'biome' },
       typescript = { 'biome' },
       typescriptreact = { 'biome' },
       javascript = { 'biome' },
