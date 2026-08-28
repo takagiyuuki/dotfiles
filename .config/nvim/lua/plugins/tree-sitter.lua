@@ -23,12 +23,16 @@ return {
       'typescript',
       'tsx',
       'html',
+      'css',
       'astro',
       'yaml',
       'toml',
       'kdl',
       'terraform',
       'hcl',
+      'jsdoc', -- typescript/javascript comments
+      'regex', -- html: <input pattern="...">
+      'comment', -- TODO/FIXME in comments
     })
 
     -- Highlighting is a core Neovim feature on the main branch.
