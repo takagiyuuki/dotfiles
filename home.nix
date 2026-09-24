@@ -75,6 +75,7 @@
       ))
       ruff
       pyright
+      uv
       # Rust
       rustup
       # Lua
