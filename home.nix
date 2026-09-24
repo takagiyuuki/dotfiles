@@ -15,7 +15,7 @@
       "claude-code"
     ];
   home = {
-    username = user.username;
+    inherit (user) username;
     homeDirectory = "/home/${user.username}";
     stateVersion = "25.11"; # Please read the comment before changing.
     packages = with pkgs; [
@@ -157,10 +157,22 @@
           email = user.author.email;
         };
         init.defaultBranch = "main";
+        fetch.prune = true;
+        pull.ff = "only";
         push = {
           autoSetupRemote = true;
           followTags = true;
         };
+        commit.verbose = true;
+        merge.conflictStyle = "zdiff3";
+        rebase = {
+          autoStash = true;
+          autosquash = true;
+        };
+        diff.algorithm = "histogram";
+        branch.sort = "-committerdate";
+        tag.sort = "version:refname";
+        column.ui = "auto";
         core.editor = "nvim";
         "credential \"https://github.com\"" = {
           helper = "!${pkgs.gh}/bin/gh auth git-credential";
