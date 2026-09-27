@@ -1,9 +1,10 @@
 {
   config,
   pkgs,
+  root,
+  user,
   jj-starship-pkg,
   herdr-pkg,
-  user,
   ...
 }:
 {
@@ -110,16 +111,15 @@
       jj-starship-pkg
     ];
     file = {
-      ".config/nvim/init.lua".source = ./.config/nvim/init.lua;
-      ".config/nvim/lua".source = ./.config/nvim/lua;
-      ".config/wezterm".source = ./.config/wezterm;
-      ".config/starship.toml".source = ./.config/starship/starship.toml;
-      ".config/zellij/".source = ./.config/zellij;
-      ".config/herdr/config.toml".source = ./.config/herdr/config.toml;
-      ".config/git/ignore".source = ./.config/git/ignore;
-      # Global config
-      ".tflint.hcl".source = ./.tflint.hcl;
-      ".terraformrc".source = ./.terraformrc;
+      ".config/nvim/init.lua".source = root + "/config/nvim/init.lua";
+      ".config/nvim/lua".source = root + "/config/nvim/lua";
+      ".config/wezterm".source = root + "/config/wezterm";
+      ".config/starship.toml".source = root + "/config/starship/starship.toml";
+      ".config/zellij/".source = root + "/config/zellij";
+      ".config/herdr/config.toml".source = root + "/config/herdr/config.toml";
+      ".config/git/ignore".source = root + "/config/git/ignore";
+      ".tflint.hcl".source = root + "/config/tflint/.tflint.hcl";
+      ".terraformrc".source = root + "/config/terraform/.terraformrc";
     };
     sessionPath = [
       "${config.home.homeDirectory}/.npm-global"
@@ -192,23 +192,23 @@
       syntaxHighlighting.enable = true;
       history.size = 10000;
       initContent = ''
-                # Notify Wezterm of the current directory (OSC 7)
-                precmd() {
-                  printf "\033]7;file://%s%s\033\\" "$HOSTNAME" "$PWD"
-                }
+        # Notify Wezterm of the current directory (OSC 7)
+        precmd() {
+          printf "\033]7;file://%s%s\033\\" "$HOSTNAME" "$PWD"
+        }
 
-                home() {
-        	  if [[ -e /etc/NIXOS ]]; then
-        	  sudo nixos-rebuild switch --flake "${config.home.homeDirectory}/dotfiles"
-        	  else
-                  home-manager switch --flake "${config.home.homeDirectory}/dotfiles#${config.home.username}"
-                  fi
-        	  local exit_code=$?
-                  if [[ $exit_code -eq 0 ]]; then
-                    exec zsh -l
-                  fi
-                  return $exit_code
-                }
+        home() {
+          if [[ -e /etc/NIXOS ]]; then
+            sudo nixos-rebuild switch --flake "${config.home.homeDirectory}/dotfiles"
+          else
+            home-manager switch --flake "${config.home.homeDirectory}/dotfiles#${config.home.username}"
+          fi
+          local exit_code=$?
+          if [[ $exit_code -eq 0 ]]; then
+            exec zsh -l
+          fi
+          return $exit_code
+        }
       '';
     };
     bat = {

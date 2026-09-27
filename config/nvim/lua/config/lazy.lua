@@ -30,5 +30,5 @@ require('lazy').setup({
   -- Specify a custom path for the lockfile to avoid "Permission denied"
   -- caused by Nix/Home Manager making the default config directory read-only.
   -- This also allows tracking plugin versions directly in the dotfiles repository.
-  lockfile = vim.fn.expand('~/dotfiles/.config/nvim/lazy-lock.json'),
+  lockfile = vim.fn.expand('~/dotfiles/config/nvim/lazy-lock.json'),
 })
