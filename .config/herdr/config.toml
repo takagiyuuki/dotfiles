@@ -2,7 +2,7 @@
 onboarding = false
 
 [theme]
-name = "solarized-light"
+name = "catppuccin_latte"
 
 [ui.toast]
 delivery = "herdr"

@@ -8,8 +8,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # NixOS-WSL module
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Starship prompt module for Git and Jujutsu
     jj-starship.url = "github:dmmulroy/jj-starship";
+
     # Terminal agent multiplexer
     herdr.url = "github:ogulcancelik/herdr";
   };
@@ -18,6 +26,7 @@
     {
       nixpkgs,
       home-manager,
+      nixos-wsl,
       jj-starship,
       herdr,
       ...
@@ -41,11 +50,36 @@
 
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
-        modules = [ ./home.nix ];
+        modules = [
+          ./home.nix
+          ./unfree.nix
+        ];
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
         extraSpecialArgs = { inherit jj-starship-pkg herdr-pkg user; };
+      };
+
+      nixosConfigurations.wsl-desktop = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit user; };
+
+        # Specify your NixOS-WSL configuration modules here, for example,
+        # the path to your home.nix.
+        modules = [
+          nixos-wsl.nixosModules.default
+          home-manager.nixosModules.home-manager
+          ./hosts/wsl-desktop/configuration.nix
+          ./unfree.nix
+          {
+            nixpkgs.hostPlatform = system;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = { inherit jj-starship-pkg herdr-pkg user; };
+              users.${user.username} = import ./home.nix;
+            };
+          }
+        ];
       };
     };
 }

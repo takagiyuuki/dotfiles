@@ -7,13 +7,6 @@
   ...
 }:
 {
-  # Allow unfree only for specific packages
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (pkgs.lib.getName pkg) [
-      "terraform"
-      "claude-code"
-    ];
   home = {
     inherit (user) username;
     homeDirectory = "/home/${user.username}";
@@ -199,19 +192,23 @@
       syntaxHighlighting.enable = true;
       history.size = 10000;
       initContent = ''
-        # Notify Wezterm of the current directory (OSC 7)
-        precmd() {
-          printf "\033]7;file://%s%s\033\\" "$HOSTNAME" "$PWD"
-        }
+                # Notify Wezterm of the current directory (OSC 7)
+                precmd() {
+                  printf "\033]7;file://%s%s\033\\" "$HOSTNAME" "$PWD"
+                }
 
-        home() {
-          home-manager switch --flake "${config.home.homeDirectory}/dotfiles#${config.home.username}"
-          local exit_code=$?
-          if [[ $exit_code -eq 0 ]]; then
-            exec zsh -l
-          fi
-          return $exit_code
-        }
+                home() {
+        	  if [[ -e /etc/NIXOS ]]; then
+        	  sudo nixos-rebuild switch --flake "${config.home.homeDirectory}/dotfiles"
+        	  else
+                  home-manager switch --flake "${config.home.homeDirectory}/dotfiles#${config.home.username}"
+                  fi
+        	  local exit_code=$?
+                  if [[ $exit_code -eq 0 ]]; then
+                    exec zsh -l
+                  fi
+                  return $exit_code
+                }
       '';
     };
     bat = {
