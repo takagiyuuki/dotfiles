@@ -36,13 +36,9 @@
       pkgs = nixpkgs.legacyPackages.${system};
       jj-starship-pkg = jj-starship.packages.${system}.default;
       herdr-pkg = herdr.packages.${system}.default;
-      user = {
-        username = "yuki"; # home dir, home-manager flake target
-        author = {
-          name = "yuki"; # git/jj commit author
-          email = "64290748+takagiyuuki@users.noreply.github.com";
-        };
-      };
+
+      root = ./.;
+      user = import ./data/user.nix;
     in
     {
       homeConfigurations.${user.username} = home-manager.lib.homeManagerConfiguration {
@@ -51,13 +47,20 @@
         # Specify your home configuration modules here, for example,
         # the path to your home.nix.
         modules = [
-          ./home.nix
-          ./unfree.nix
+          ./home
+          ./modules/unfree.nix
         ];
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-        extraSpecialArgs = { inherit jj-starship-pkg herdr-pkg user; };
+        extraSpecialArgs = {
+          inherit
+            jj-starship-pkg
+            herdr-pkg
+            user
+            root
+            ;
+        };
       };
 
       nixosConfigurations.wsl-desktop = nixpkgs.lib.nixosSystem {
@@ -69,14 +72,21 @@
           nixos-wsl.nixosModules.default
           home-manager.nixosModules.home-manager
           ./hosts/wsl-desktop/configuration.nix
-          ./unfree.nix
+          ./modules/unfree.nix
           {
             nixpkgs.hostPlatform = system;
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = { inherit jj-starship-pkg herdr-pkg user; };
-              users.${user.username} = import ./home.nix;
+              extraSpecialArgs = {
+                inherit
+                  jj-starship-pkg
+                  herdr-pkg
+                  user
+                  root
+                  ;
+              };
+              users.${user.username} = import ./home;
             };
           }
         ];
