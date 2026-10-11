@@ -34,6 +34,7 @@
       unzip
       fd
       jq
+      rename
       # Git hook manager
       lefthook
       # secret scanner
@@ -105,6 +106,8 @@
       # aws
       awscli2
       ssm-session-manager-plugin
+      # cloudstrage cli-tool
+      rclone
       # AI Agent
       claude-code
       # starship modules
