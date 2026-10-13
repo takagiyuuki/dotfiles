@@ -1,16 +1,6 @@
 { pkgs, user, ... }:
 {
-  wsl = {
-    enable = true;
-    defaultUser = user.username;
-    wslConf = {
-      # Keep Windows PATH out: faster zsh startup, fewer name collisions
-      interop.appendWindowsPath = false;
-    };
-    interop.includePath = false;
-  };
-
-  networking.hostName = "wsl-desktop";
+  networking.hostName = "dev";
   programs.nix-ld.enable = true; # FHS workaround
   programs.zsh.enable = true;
   users.users.${user.username}.shell = pkgs.zsh;
