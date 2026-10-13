@@ -63,7 +63,7 @@
         };
       };
 
-      nixosConfigurations.wsl-desktop = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.dev = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit user; };
 
         # Specify your NixOS-WSL configuration modules here, for example,
@@ -71,7 +71,8 @@
         modules = [
           nixos-wsl.nixosModules.default
           home-manager.nixosModules.home-manager
-          ./hosts/wsl-desktop/configuration.nix
+          ./hosts/nixos
+          ./hosts/nixos/wsl.nix
           ./modules/unfree.nix
           {
             nixpkgs.hostPlatform = system;
