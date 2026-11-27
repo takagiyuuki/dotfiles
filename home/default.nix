@@ -200,6 +200,11 @@
           printf "\033]7;file://%s%s\033\\" "$HOSTNAME" "$PWD"
         }
 
+        # mise installed via curl (intentionally managed outside Nix)
+        if [[ -x "$HOME/.local/bin/mise" ]]; then
+          eval "$("$HOME/.local/bin/mise" activate zsh)"
+        fi
+
         home() {
           if [[ -e /etc/NIXOS ]]; then
             sudo nixos-rebuild switch --flake "${config.home.homeDirectory}/dotfiles"
